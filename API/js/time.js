@@ -2,11 +2,11 @@
  * Update datetime picker element
  * Used for static & dynamic added elements (when clone)
  */
-function rwmb_update_time_picker()
+function anim8_update_time_picker()
 {
 	var $ = jQuery;
 
-	$( '.rwmb-time' ).each( function()
+	$( '.anim8-time' ).each( function()
 	{
 		var $this = $( this ),
 			options = $this.data( 'options' );
@@ -17,5 +17,5 @@ function rwmb_update_time_picker()
 
 jQuery( document ).ready( function($)
 {
-	rwmb_update_time_picker();
+	anim8_update_time_picker();
 } );

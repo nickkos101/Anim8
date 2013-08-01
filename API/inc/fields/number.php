@@ -2,9 +2,9 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-if ( !class_exists( 'RWMB_Number_Field' ) )
+if ( !class_exists( 'anim8_Number_Field' ) )
 {
-	class RWMB_Number_Field
+	class anim8_Number_Field
 	{
 		/**
 		 * Get field HTML
@@ -18,7 +18,7 @@ if ( !class_exists( 'RWMB_Number_Field' ) )
 		static function html( $html, $meta, $field )
 		{
 			return sprintf(
-				'<input type="number" class="rwmb-number" name="%s" id="%s" value="%s" step="%s" min="%s" />',
+				'<input type="number" class="anim8-number" name="%s" id="%s" value="%s" step="%s" min="%s" />',
 				$field['field_name'],
 				empty( $field['clone'] ) ? $field['id'] : '',
 				$meta,

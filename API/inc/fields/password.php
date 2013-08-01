@@ -2,9 +2,9 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'RWMB_Password_Field' ) )
+if ( ! class_exists( 'anim8_Password_Field' ) )
 {
-	class RWMB_Password_Field
+	class anim8_Password_Field
 	{
 		/**
 		 * Get field HTML
@@ -18,7 +18,7 @@ if ( ! class_exists( 'RWMB_Password_Field' ) )
 		static function html( $html, $meta, $field )
 		{
 			return sprintf(
-				'<input type="password" class="rwmb-password" name="%s" id="%s" value="%s" size="%s" />',
+				'<input type="password" class="anim8-password" name="%s" id="%s" value="%s" size="%s" />',
 				$field['field_name'],
 				$field['id'],
 				$meta,

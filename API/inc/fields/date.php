@@ -2,9 +2,9 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'RWMB_Date_Field' ) )
+if ( ! class_exists( 'anim8_Date_Field' ) )
 {
-	class RWMB_Date_Field
+	class anim8_Date_Field
 	{
 		/**
 		 * Enqueue scripts and styles
@@ -13,12 +13,12 @@ if ( ! class_exists( 'RWMB_Date_Field' ) )
 		 */
 		static function admin_enqueue_scripts()
 		{
-			$url = RWMB_CSS_URL . 'jqueryui';
+			$url = API_CSS_URL . 'jqueryui';
 			wp_register_style( 'jquery-ui-core', "{$url}/jquery.ui.core.css", array(), '1.8.17' );
 			wp_register_style( 'jquery-ui-theme', "{$url}/jquery.ui.theme.css", array(), '1.8.17' );
 			wp_enqueue_style( 'jquery-ui-datepicker', "{$url}/jquery.ui.datepicker.css", array( 'jquery-ui-core', 'jquery-ui-theme' ), '1.8.17' );
 
-			wp_enqueue_script( 'rwmb-date', RWMB_JS_URL . 'date.js', array( 'jquery-ui-datepicker' ), RWMB_VER, true );
+			wp_enqueue_script( 'anim8-date', API_JS_URL . 'date.js', array( 'jquery-ui-datepicker' ), API_VER, true );
 		}
 
 		/**
@@ -33,7 +33,7 @@ if ( ! class_exists( 'RWMB_Date_Field' ) )
 		static function html( $html, $meta, $field )
 		{
 			return sprintf(
-				'<input type="text" class="rwmb-date" name="%s" value="%s" id="%s" size="%s" data-options="%s" />',
+				'<input type="text" class="anim8-date" name="%s" value="%s" id="%s" size="%s" data-options="%s" />',
 				$field['field_name'],
 				$meta,
 				isset( $field['clone'] ) && $field['clone'] ? '' : $field['id'],

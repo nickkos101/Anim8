@@ -2,9 +2,9 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'RWMB_Color_Field' ) )
+if ( ! class_exists( 'anim8_Color_Field' ) )
 {
-	class RWMB_Color_Field
+	class anim8_Color_Field
 	{
 		/**
 		 * Enqueue scripts and styles
@@ -13,8 +13,8 @@ if ( ! class_exists( 'RWMB_Color_Field' ) )
 		 */
 		static function admin_enqueue_scripts()
 		{
-			wp_enqueue_style( 'rwmb-color', RWMB_CSS_URL . 'color.css', array( 'farbtastic' ), RWMB_VER );
-			wp_enqueue_script( 'rwmb-color', RWMB_JS_URL . 'color.js', array( 'farbtastic' ), RWMB_VER, true );
+			wp_enqueue_style( 'anim8-color', API_CSS_URL . 'color.css', array( 'farbtastic' ), API_VER );
+			wp_enqueue_script( 'anim8-color', API_JS_URL . 'color.js', array( 'farbtastic' ), API_VER, true );
 		}
 
 		/**
@@ -29,8 +29,8 @@ if ( ! class_exists( 'RWMB_Color_Field' ) )
 		static function html( $html, $meta, $field )
 		{
 			return sprintf(
-				'<input class="rwmb-color" type="text" name="%s" id="%s" value="%s" size="%s" />
-				<div class="rwmb-color-picker"></div>',
+				'<input class="anim8-color" type="text" name="%s" id="%s" value="%s" size="%s" />
+				<div class="anim8-color-picker"></div>',
 				$field['field_name'],
 				empty( $field['clone'] ) ? $field['id'] : '',
 				$meta,

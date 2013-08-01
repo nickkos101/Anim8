@@ -2,11 +2,11 @@
  * Update date picker element
  * Used for static & dynamic added elements (when clone)
  */
-function rwmb_update_date_picker()
+function anim8_update_date_picker()
 {
 	var $ = jQuery;
 
-	$( '.rwmb-date' ).each( function()
+	$( '.anim8-date' ).each( function()
 	{
 		var $this = $( this ),
 			options = $this.data( 'options' );
@@ -17,5 +17,5 @@ function rwmb_update_date_picker()
 
 jQuery( document ).ready( function($)
 {
-	rwmb_update_date_picker();
+	anim8_update_date_picker();
 } );

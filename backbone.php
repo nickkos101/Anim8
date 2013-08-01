@@ -1,10 +1,10 @@
 <?php
 
-$prefix = 'YOUR_PREFIX_';
-global $meta_boxes;
-$meta_boxes = array();
+$prefix = 'Anim8_';
+global $anim8_boxes;
+$anim8_boxes = array();
 
-$meta_boxes[] = array(
+$anim8_boxes[] = array(
     'id' => 'house',
     'title' => 'Home Info',
     'pages' => array('anim8slides'),
@@ -19,12 +19,12 @@ $meta_boxes[] = array(
         ),    
     );
 
-function YOUR_PREFIX_register_meta_boxes() {
-    global $meta_boxes;
-    if (class_exists('RW_Meta_Box')) {
-        foreach ($meta_boxes as $meta_box) {
-            new RW_Meta_Box($meta_box);
+function Anim8_register_meta_boxes() {
+    global $anim8_boxes;
+    if (class_exists('anim8_Meta_Box')) {
+        foreach ($anim8_boxes as $anim8_box) {
+            new anim8_Meta_Box($anim8_box);
         }
     }
 }
-add_action('admin_init', 'YOUR_PREFIX_register_meta_boxes');
+add_action('admin_init', 'Anim8_register_meta_boxes');

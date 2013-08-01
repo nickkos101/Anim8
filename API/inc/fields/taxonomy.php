@@ -2,9 +2,9 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'RWMB_Taxonomy_Field' ) )
+if ( ! class_exists( 'anim8_Taxonomy_Field' ) )
 {
-	class RWMB_Taxonomy_Field
+	class anim8_Taxonomy_Field
 	{
 		/**
 		 * Enqueue scripts and styles
@@ -13,8 +13,8 @@ if ( ! class_exists( 'RWMB_Taxonomy_Field' ) )
 		 */
 		static function admin_enqueue_scripts()
 		{
-			wp_enqueue_style( 'rwmb-taxonomy', RWMB_CSS_URL . 'taxonomy.css', array(), RWMB_VER );
-			wp_enqueue_script( 'rwmb-taxonomy', RWMB_JS_URL . 'taxonomy.js', array( 'jquery', 'wp-ajax-response' ), RWMB_VER, true );
+			wp_enqueue_style( 'anim8-taxonomy', API_CSS_URL . 'taxonomy.css', array(), API_VER );
+			wp_enqueue_script( 'anim8-taxonomy', API_JS_URL . 'taxonomy.js', array( 'jquery', 'wp-ajax-response' ), API_VER, true );
 		}
 
 		/**
@@ -189,7 +189,7 @@ if ( ! class_exists( 'RWMB_Taxonomy_Field' ) )
 			$hidden   = $active ? 'active' : 'disabled';
 			$disabled = disabled( $active, false, false );
 			$multiple = $field['multiple'] ? " multiple='multiple' style='height: auto;'" : '';
-			$id       = empty( $parent_slug ) ? '' : " id='rwmb-taxonomy-{$parent_slug}'";
+			$id       = empty( $parent_slug ) ? '' : " id='anim8-taxonomy-{$parent_slug}'";
 
 			$html  = "<div{$id} class='rw-taxonomy-tree {$hidden}'>";
 			$html .= "<select name='{$field['field_name']}'{$disabled}{$multiple}>";

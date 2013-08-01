@@ -1,60 +1,60 @@
 /* =Styles for 'normal' meta boxes
 -------------------------------------------------------------- */
 
-.rwmb-field {
+.anim8-field {
 	margin: 10px 0;
 }
-.rwmb-label,
-.rwmb-input {
+.anim8-label,
+.anim8-input {
 	display: inline-block;
 	vertical-align: top;
 }
-.rwmb-label {
+.anim8-label {
 	width: 24%;
 }
-.rwmb-label.required {
+.anim8-label.required {
 	font-weight: bold;
 }
-.rwmb-label.required > span
+.anim8-label.required > span
 {
 	color: #c00;
 }
 
 /* 75% if field has label, 100% if no label */
-.rwmb-input {
+.anim8-input {
 	width: 100%;
 }
-.rwmb-label ~ .rwmb-input {
+.anim8-label ~ .anim8-input {
 	width: 75%;
 }
-.rwmb-input h4 {
+.anim8-input h4 {
 	margin: 0;
 }
-.rwmb-textarea {
+.anim8-textarea {
 	resize: vertical;
 }
 
 /* Clone */
-.rwmb-clone {
+.anim8-clone {
 	min-height: 24px;
 }
-.rwmb-clone > input[type="radio"],
-.rwmb-clone > input[type="checkbox"] {
+.anim8-clone > input[type="radio"],
+.anim8-clone > input[type="checkbox"] {
 	margin: 6px 0 0 4px;
 }
-.rwmb-button {
+.anim8-button {
 	display: inline;
 	float: right;
 }
 
 /* Fix width to not overlap button for cloned sliders */
-.rwmb-clone .rwmb-slider {
+.anim8-clone .anim8-slider {
 	width: 80%;
 	margin: 6px 0 0;
 }
 
 /* Fix buttons after sliders */
-.clearfix + .rwmb-button {
+.clearfix + .anim8-button {
 	margin-top: -16px;
 }
 
@@ -78,7 +78,7 @@ select.error {
 /* =Styles for 'side' meta boxes
 -------------------------------------------------------------- */
 
-#side-sortables .rwmb-label,
-#side-sortables .rwmb-input {
+#side-sortables .anim8-label,
+#side-sortables .anim8-input {
 	width: 100%;
 }

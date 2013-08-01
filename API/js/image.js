@@ -1,12 +1,12 @@
 jQuery( document ).ready( function($)
 {
 	// Reorder images
-	$( '.rwmb-images' ).each( function()
+	$( '.anim8-images' ).each( function()
 	{
 		var $this		= $(this),
-			field_id	= $this.parents( '.rwmb-field' ).find( '.field-id' ).val(),
+			field_id	= $this.parents( '.anim8-field' ).find( '.field-id' ).val(),
 			data		= {
-				action  : 'rwmb_reorder_images',
+				action  : 'anim8_reorder_images',
 				_wpnonce: $('#nonce-reorder-images_' + field_id).val(),
 				post_id : $('#post_ID').val(),
 				field_id: field_id

@@ -27,8 +27,8 @@ msgid "&#8211;"
 msgstr "&#8211;"
 
 #: ../meta-box.php:691
-msgid "RW_Meta_Box Debug:"
-msgstr "RW_Meta_Box-debug"
+msgid "anim8_Meta_Box Debug:"
+msgstr "anim8_Meta_Box-debug"
 
 #: ../inc/fields/color.php:45
 msgid "Select a color"

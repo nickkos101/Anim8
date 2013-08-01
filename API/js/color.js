@@ -2,13 +2,13 @@
  * Update color picker element
  * Used for static & dynamic added elements (when clone)
  */
-function rwmb_update_color_picker()
+function anim8_update_color_picker()
 {
 	var $ = jQuery;
-	$( '.rwmb-color-picker' ).each( function()
+	$( '.anim8-color-picker' ).each( function()
 	{
 		var $this = $( this ),
-			$input = $this.siblings( 'input.rwmb-color' );
+			$input = $this.siblings( 'input.anim8-color' );
 
 		// Make sure the value is displayed
 		if ( ! $input.val() )
@@ -20,15 +20,15 @@ function rwmb_update_color_picker()
 
 jQuery( document ).ready( function($)
 {
-	$( '.rwmb-input' ).delegate( '.rwmb-color', 'focus', function()
+	$( '.anim8-input' ).delegate( '.anim8-color', 'focus', function()
 	{
-		$( this ).siblings( '.rwmb-color-picker' ).show();
+		$( this ).siblings( '.anim8-color-picker' ).show();
 		return false;
-	} ).delegate( '.rwmb-color', 'blur', function()
+	} ).delegate( '.anim8-color', 'blur', function()
 	{
-		$( this ).siblings( '.rwmb-color-picker' ).hide();
+		$( this ).siblings( '.anim8-color-picker' ).hide();
 		return false;
 	} );
 
-	rwmb_update_color_picker();
+	anim8_update_color_picker();
 } );

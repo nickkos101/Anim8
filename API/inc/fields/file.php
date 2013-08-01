@@ -2,9 +2,9 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'RWMB_File_Field' ) )
+if ( ! class_exists( 'anim8_File_Field' ) )
 {
-	class RWMB_File_Field
+	class anim8_File_Field
 	{
 		/**
 		 * Enqueue scripts and styles
@@ -13,7 +13,7 @@ if ( ! class_exists( 'RWMB_File_Field' ) )
 		 */
 		static function admin_enqueue_scripts()
 		{
-			wp_enqueue_script( 'rwmb-file', RWMB_JS_URL . 'file.js', array( 'jquery', 'wp-ajax-response' ), RWMB_VER, true );
+			wp_enqueue_script( 'anim8-file', API_JS_URL . 'file.js', array( 'jquery', 'wp-ajax-response' ), API_VER, true );
 		}
 
 		/**
@@ -27,7 +27,7 @@ if ( ! class_exists( 'RWMB_File_Field' ) )
 			add_action( 'post_edit_form_tag', array( __CLASS__, 'post_edit_form_tag' ) );
 
 			// Delete file via Ajax
-			add_action( 'wp_ajax_rwmb_delete_file', array( __CLASS__, 'wp_ajax_delete_file' ) );
+			add_action( 'wp_ajax_anim8_delete_file', array( __CLASS__, 'wp_ajax_delete_file' ) );
 		}
 
 		/**
@@ -53,15 +53,15 @@ if ( ! class_exists( 'RWMB_File_Field' ) )
 			$field_id      = isset( $_POST['field_id'] ) ? $_POST['field_id'] : 0;
 			$attachment_id = isset( $_POST['attachment_id'] ) ? intval( $_POST['attachment_id'] ) : 0;
 
-			check_admin_referer( "rwmb-delete-file_{$field_id}" );
+			check_admin_referer( "anim8-delete-file_{$field_id}" );
 
 			delete_post_meta( $post_id, $field_id, $attachment_id );
 			$ok = wp_delete_attachment( $attachment_id );
 
 			if ( $ok )
-				RW_Meta_Box::ajax_response( '', 'success' );
+				anim8_Meta_Box::ajax_response( '', 'success' );
 			else
-				RW_Meta_Box::ajax_response( __( 'Error: Cannot delete file', 'rwmb' ), 'error' );
+				anim8_Meta_Box::ajax_response( __( 'Error: Cannot delete file', 'anim8' ), 'error' );
 		}
 
 		/**
@@ -75,17 +75,17 @@ if ( ! class_exists( 'RWMB_File_Field' ) )
 		 */
 		static function html( $html, $meta, $field )
 		{
-			$i18n_delete = _x( 'Delete', 'file upload', 'rwmb' );
-			$i18n_title  = _x( 'Upload files', 'file upload', 'rwmb' );
-			$i18n_more   = _x( '+ Add new file', 'file upload', 'rwmb' );
+			$i18n_delete = _x( 'Delete', 'file upload', 'anim8' );
+			$i18n_title  = _x( 'Upload files', 'file upload', 'anim8' );
+			$i18n_more   = _x( '+ Add new file', 'file upload', 'anim8' );
 
-			$html = wp_nonce_field( "rwmb-delete-file_{$field['id']}", "nonce-delete-file_{$field['id']}", false, false );
+			$html = wp_nonce_field( "anim8-delete-file_{$field['id']}", "nonce-delete-file_{$field['id']}", false, false );
 
 			// Uploaded files
 			if ( ! empty( $meta ) )
 			{
-				$html .= '<ol class="rwmb-uploaded">';
-				$li = '<li>%s (<a title="%s" class="rwmb-delete-file" href="#" data-field_id="%s" data-attachment_id="%s">%s</a>)</li>';
+				$html .= '<ol class="anim8-uploaded">';
+				$li = '<li>%s (<a title="%s" class="anim8-delete-file" href="#" data-field_id="%s" data-attachment_id="%s">%s</a>)</li>';
 
 				foreach ( $meta as $attachment_id )
 				{
@@ -108,7 +108,7 @@ if ( ! class_exists( 'RWMB_File_Field' ) )
 				'<h4>%s</h4>
 				<div class="new-files">
 					<div class="file-input"><input type="file" name="%s[]" /></div>
-					<a class="rwmb-add-file" href="#"><strong>%s</strong></a>
+					<a class="anim8-add-file" href="#"><strong>%s</strong></a>
 				</div>',
 				$i18n_title,
 				$field['id'],

@@ -21,7 +21,7 @@ jQuery( document ).ready( function($)
 		$childList.removeClass('active').addClass('disabled').find('select').each(function(){
 			$(this).val($('options:first', this).val()).attr("disabled", "disabled")
 		});
-		$childList.filter('#rwmb-taxonomy-' + $value).removeClass('disabled').addClass('active').children('select').removeAttr('disabled');
+		$childList.filter('#anim8-taxonomy-' + $value).removeClass('disabled').addClass('active').children('select').removeAttr('disabled');
 		
 	} );
 } );

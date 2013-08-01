@@ -1,7 +1,7 @@
 jQuery( document ).ready( function ( $ )
 {
 	// Add more file
-	$( '.rwmb-add-file' ).click( function ()
+	$( '.anim8-add-file' ).click( function ()
 	{
 		var $this = $( this ), $first = $this.parent().find( '.file-input:first' );
 
@@ -11,13 +11,13 @@ jQuery( document ).ready( function ( $ )
 	} );
 
 	// Delete file via Ajax
-	$( '.rwmb-uploaded' ).delegate( '.rwmb-delete-file', 'click', function ()
+	$( '.anim8-uploaded' ).delegate( '.anim8-delete-file', 'click', function ()
 	{
 		var $this = $( this ),
 			$parent = $this.parents( 'li' ),
 			field_id = $this.data( 'field_id' ),
 			data = {
-				action       : 'rwmb_delete_file',
+				action       : 'anim8_delete_file',
 				_wpnonce     : $( '#nonce-delete-file_' + field_id ).val(),
 				post_id      : $( '#post_ID' ).val(),
 				field_id     : field_id,

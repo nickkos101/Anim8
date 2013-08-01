@@ -2,13 +2,13 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'RWMB_Common' ) )
+if ( ! class_exists( 'anim8_Common' ) )
 {
 	/**
 	 * Common functions for the plugin
 	 * Independent from meta box/field classes
 	 */
-	class RWMB_Common
+	class anim8_Common
 	{
 		/**
 		 * Do actions when class is loaded
@@ -29,13 +29,13 @@ if ( ! class_exists( 'RWMB_Common' ) )
 		{
 			// l18n translation files
 			$locale = get_locale();
-			$dir    = trailingslashit( RWMB_DIR . 'lang' );
+			$dir    = trailingslashit( API_DIR . 'lang' );
 			$mofile = "{$dir}{$locale}.mo";
 
 			// In themes/plugins/mu-plugins directory
-			load_textdomain( 'rwmb', $mofile );
+			load_textdomain( 'anim8', $mofile );
 		}
 	}
 
-	RWMB_Common::on_load();
+	anim8_Common::on_load();
 }

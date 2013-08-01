@@ -2,9 +2,9 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'RWMB_Text_Field' ) )
+if ( ! class_exists( 'anim8_Text_Field' ) )
 {
-	class RWMB_Text_Field
+	class anim8_Text_Field
 	{
 		/**
 		 * Get field HTML
@@ -18,7 +18,7 @@ if ( ! class_exists( 'RWMB_Text_Field' ) )
 		static function html( $html, $meta, $field )
 		{
 			return sprintf(
-				'<input type="text" class="rwmb-text" name="%s" id="%s" value="%s" size="%s" />',
+				'<input type="text" class="anim8-text" name="%s" id="%s" value="%s" size="%s" />',
 				$field['field_name'],
 				$field['id'],
 				$meta,

@@ -1,8 +1,8 @@
 /* Uploaded image */
-.rwmb-images {
+.anim8-images {
 	overflow: hidden;
 }
-.rwmb-images li {
+.anim8-images li {
 	margin: 0 10px 10px 0;
 	float: left;
 	width: 150px;
@@ -12,11 +12,11 @@
 	cursor: move;
 	position: relative;
 }
-.rwmb-images img {
+.anim8-images img {
 	width: 150px;
 	height: 150px;
 }
-.rwmb-image-bar {
+.anim8-image-bar {
 	color: #fff;
 	font-weight: bold;
 	background: #000;
@@ -25,7 +25,7 @@
 	right: 0;
 	padding: 5px;
 }
-.rwmb-image-bar a {
+.anim8-image-bar a {
 	color: #fff;
 	font-weight: bold;
 }

@@ -2,9 +2,9 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'RWMB_Thickbox_Image_Field' ) )
+if ( ! class_exists( 'anim8_Thickbox_Image_Field' ) )
 {
-	class RWMB_Thickbox_Image_Field extends RWMB_Image_Field
+	class anim8_Thickbox_Image_Field extends anim8_Image_Field
 	{
 		/**
 		 * Enqueue scripts and styles
@@ -18,7 +18,7 @@ if ( ! class_exists( 'RWMB_Thickbox_Image_Field' ) )
 			add_thickbox();
 			wp_enqueue_script( 'media-upload' );
 
-			wp_enqueue_script( 'rwmb-thickbox-image', RWMB_JS_URL . 'thickbox-image.js', array( 'jquery' ), RWMB_VER, true );
+			wp_enqueue_script( 'anim8-thickbox-image', API_JS_URL . 'thickbox-image.js', array( 'jquery' ), API_VER, true );
 		}
 
 		/**
@@ -32,17 +32,17 @@ if ( ! class_exists( 'RWMB_Thickbox_Image_Field' ) )
 		 */
 		static function html( $html, $meta, $field )
 		{
-			$i18n_title = _x( 'Upload images', 'image upload', 'rwmb' );
+			$i18n_title = _x( 'Upload images', 'image upload', 'anim8' );
 
-			$html  = wp_nonce_field( "rwmb-delete-file_{$field['id']}", "nonce-delete-file_{$field['id']}", false, false );
-			$html .= wp_nonce_field( "rwmb-reorder-images_{$field['id']}", "nonce-reorder-images_{$field['id']}", false, false );
+			$html  = wp_nonce_field( "anim8-delete-file_{$field['id']}", "nonce-delete-file_{$field['id']}", false, false );
+			$html .= wp_nonce_field( "anim8-reorder-images_{$field['id']}", "nonce-reorder-images_{$field['id']}", false, false );
 			$html .= "<input type='hidden' class='field-id' value='{$field['id']}' />";
 
 			// Uploaded images
 			$html .= self::get_uploaded_images( $meta, $field );
 
 			// Show form upload
-			$html .= "<a href='#' class='button rwmb-thickbox-upload' rel='{$field['id']}'>{$i18n_title}</a>";
+			$html .= "<a href='#' class='button anim8-thickbox-upload' rel='{$field['id']}'>{$i18n_title}</a>";
 
 			return $html;
 		}

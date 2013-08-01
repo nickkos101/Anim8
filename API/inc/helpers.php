@@ -7,17 +7,17 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-add_shortcode( 'rwmb_meta', 'rwmb_meta_shortcode' );
+add_shortcode( 'anim8_meta', 'anim8_meta_shortcode' );
 
 /**
  * Shortcode to display meta value
  *
- * @param $atts Array of shortcode attributes, same as rwmb_meta function, but has more "meta_key" parameter
- * @see rwmb_meta function below
+ * @param $atts Array of shortcode attributes, same as anim8_meta function, but has more "meta_key" parameter
+ * @see anim8_meta function below
  *
  * @return string
  */
-function rwmb_meta_shortcode( $atts )
+function anim8_meta_shortcode( $atts )
 {
 	$atts = wp_parse_args( $atts, array(
 		'type'    => 'text',
@@ -26,7 +26,7 @@ function rwmb_meta_shortcode( $atts )
 	if ( empty( $atts['meta_key'] ) )
 		return '';
 
-	$meta = rwmb_meta( $atts['meta_key'], $atts, $atts['post_id'] );
+	$meta = anim8_meta( $atts['meta_key'], $atts, $atts['post_id'] );
 
 	// Get uploaded files info
 	if ( 'file' == $atts['type'] )
@@ -115,7 +115,7 @@ function rwmb_meta_shortcode( $atts )
  *
  * @return mixed
  */
-function rwmb_meta( $key, $args = array(), $post_id = null )
+function anim8_meta( $key, $args = array(), $post_id = null )
 {
 	$post_id = empty( $post_id ) ? get_the_ID() : $post_id;
 
@@ -136,7 +136,7 @@ function rwmb_meta( $key, $args = array(), $post_id = null )
 			$files = array();
 			foreach ( $meta as $id )
 			{
-				$files[$id] = rwmb_file_info( $id );
+				$files[$id] = anim8_file_info( $id );
 			}
 			$meta = $files;
 		}
@@ -161,7 +161,7 @@ function rwmb_meta( $key, $args = array(), $post_id = null )
 			$images = array();
 			foreach ( $meta as $id )
 			{
-				$images[$id] = rwmb_image_info( $id, $args );
+				$images[$id] = anim8_image_info( $id, $args );
 			}
 			$meta = $images;
 		}
@@ -183,7 +183,7 @@ function rwmb_meta( $key, $args = array(), $post_id = null )
  *
  * @return array|bool False if file not found. Array of (id, name, path, url) on success
  */
-function rwmb_file_info( $id )
+function anim8_file_info( $id )
 {
 	$path = get_attached_file( $id );
 	return array(
@@ -202,7 +202,7 @@ function rwmb_file_info( $id )
  *
  * @return array|bool False if file not found. Array of (id, name, path, url) on success
  */
-function rwmb_image_info( $id, $args = array() )
+function anim8_image_info( $id, $args = array() )
 {
 	$args = wp_parse_args( $args, array(
 		'size' => 'thumbnail',

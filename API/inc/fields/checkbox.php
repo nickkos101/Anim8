@@ -2,9 +2,9 @@
 // Prevent loading this file directly
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'RWMB_Checkbox_Field' ) )
+if ( ! class_exists( 'anim8_Checkbox_Field' ) )
 {
-	class RWMB_Checkbox_Field
+	class anim8_Checkbox_Field
 	{
 		/**
 		 * Get field HTML
@@ -18,7 +18,7 @@ if ( ! class_exists( 'RWMB_Checkbox_Field' ) )
 		static function html( $html, $meta, $field )
 		{
 			return sprintf(
-				'<input type="checkbox" class="rwmb-checkbox" name="%s" id="%s" value="1" %s />',
+				'<input type="checkbox" class="anim8-checkbox" name="%s" id="%s" value="1" %s />',
 				$field['field_name'],
 				$field['id'],
 				checked( !empty( $meta ), 1, false )

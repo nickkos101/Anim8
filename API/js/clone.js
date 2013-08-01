@@ -4,7 +4,7 @@ jQuery( document ).ready( function ( $ )
 
 	function add_cloned_fields( $input )
 	{
-		var $clone_last = $input.find( '.rwmb-clone:last' ),
+		var $clone_last = $input.find( '.anim8-clone:last' ),
 			$clone = $clone_last.clone(),
 			$input, name;
 
@@ -27,27 +27,27 @@ jQuery( document ).ready( function ( $ )
 		toggle_remove_buttons( $input );
 
 		// Fix color picker
-		if ( 'function' === typeof rwmb_update_color_picker )
-			rwmb_update_color_picker();
+		if ( 'function' === typeof anim8_update_color_picker )
+			anim8_update_color_picker();
 
 		// Fix date picker
-		if ( 'function' === typeof rwmb_update_date_picker )
-			rwmb_update_date_picker();
+		if ( 'function' === typeof anim8_update_date_picker )
+			anim8_update_date_picker();
 
 		// Fix time picker
-		if ( 'function' === typeof rwmb_update_time_picker )
-			rwmb_update_time_picker();
+		if ( 'function' === typeof anim8_update_time_picker )
+			anim8_update_time_picker();
 
 		// Fix datetime picker
-		if ( 'function' === typeof rwmb_update_datetime_picker )
-			rwmb_update_datetime_picker();
+		if ( 'function' === typeof anim8_update_datetime_picker )
+			anim8_update_datetime_picker();
 	}
 
 	// Add more clones
 	$( '.add-clone' ).click( function ()
 	{
-		var $input = $( this ).parents( '.rwmb-input' ),
-			$clone_group = $( this ).parents( '.rwmb-field' ).attr( "clone-group" );
+		var $input = $( this ).parents( '.anim8-input' ),
+			$clone_group = $( this ).parents( '.anim8-field' ).attr( "clone-group" );
 
 		// If the field is part of a clone group, get all fields in that
 		// group and itterate over them
@@ -58,7 +58,7 @@ jQuery( document ).ready( function ( $ )
 			var $metabox = $( this ).parents( '.inside' );
 			var $clone_group_list = $metabox.find( 'div[clone-group="' + $clone_group + '"]' );
 
-			$.each( $clone_group_list.find( '.rwmb-input' ),
+			$.each( $clone_group_list.find( '.anim8-input' ),
 				function ( key, value )
 				{
 					add_cloned_fields( $( value ) );
@@ -73,14 +73,14 @@ jQuery( document ).ready( function ( $ )
 	} );
 
 	// Remove clones
-	$( '.rwmb-input' ).delegate( '.remove-clone', 'click', function ()
+	$( '.anim8-input' ).delegate( '.remove-clone', 'click', function ()
 	{
 		var $this = $( this ),
-			$input = $this.parents( '.rwmb-input' ),
-			$clone_group = $( this ).parents( '.rwmb-field' ).attr( 'clone-group' );
+			$input = $this.parents( '.anim8-input' ),
+			$clone_group = $( this ).parents( '.anim8-field' ).attr( 'clone-group' );
 
 		// Remove clone only if there're 2 or more of them
-		if ( $input.find( '.rwmb-clone' ).length <= 1 )
+		if ( $input.find( '.anim8-clone' ).length <= 1 )
 			return false;
 
 		if ( $clone_group )
@@ -91,10 +91,10 @@ jQuery( document ).ready( function ( $ )
 			var $clone_group_list = $metabox.find( 'div[clone-group="' + $clone_group + '"]' );
 			var $index = $this.parent().index();
 
-			$.each( $clone_group_list.find( '.rwmb-input' ),
+			$.each( $clone_group_list.find( '.anim8-input' ),
 				function ( key, value )
 				{
-					$( value ).children( '.rwmb-clone' ).eq( $index ).remove();
+					$( value ).children( '.anim8-clone' ).eq( $index ).remove();
 
 					// Toggle remove buttons
 					toggle_remove_buttons( $( value ) );
@@ -122,7 +122,7 @@ jQuery( document ).ready( function ( $ )
 	{
 		var $button;
 		if ( !$el )
-			$el = $( '.rwmb-field' );
+			$el = $( '.anim8-field' );
 		$el.each( function ()
 		{
 			$button = $( this ).find( '.remove-clone' );

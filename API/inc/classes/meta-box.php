@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // Meta Box Class
-if ( ! class_exists( 'RW_Meta_Box' ) )
+if ( ! class_exists( 'anim8_Meta_Box' ) )
 {
 	/**
 	 * A class to rapid develop meta boxes for custom & built in content types
@@ -14,12 +14,12 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 	 * @license GNU GPL2+
 	 * @package RW Meta Box
 	 */
-	class RW_Meta_Box
+	class anim8_Meta_Box
 	{
 		/**
 		 * Meta box information
 		 */
-		var $meta_box;
+		var $anim8_box;
 
 		/**
 		 * Fields information
@@ -41,18 +41,18 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 		 *
 		 * @see demo/demo.php file for details
 		 *
-		 * @param array $meta_box Meta box definition
+		 * @param array $anim8_box Meta box definition
 		 *
-		 * @return \RW_Meta_Box
+		 * @return \anim8_Meta_Box
 		 */
-		function __construct( $meta_box )
+		function __construct( $anim8_box )
 		{
 			// Run script only in admin area
 			if ( ! is_admin() )
 				return;
 
 			// Assign meta box values to local variables and add it's missed values
-			$this->meta_box   = self::normalize( $meta_box );
+			$this->meta_box   = self::normalize( $anim8_box );
 			$this->fields     = &$this->meta_box['fields'];
 			$this->validation = &$this->meta_box['validation'];
 
@@ -91,7 +91,7 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 			if ( 'post' != $screen->base || ! in_array( $screen->post_type, $this->meta_box['pages'] ) )
 				return;
 
-			wp_enqueue_style( 'rwmb', RWMB_CSS_URL . 'style.css', RWMB_VER );
+			wp_enqueue_style( 'anim8', API_CSS_URL . 'style.css', API_VER );
 
 			// Load clone script conditionally
 			$has_clone = false;
@@ -107,12 +107,12 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 			}
 
 			if ( $has_clone )
-				wp_enqueue_script( 'rwmb-clone', RWMB_JS_URL . 'clone.js', array( 'jquery' ), RWMB_VER, true );
+				wp_enqueue_script( 'anim8-clone', API_JS_URL . 'clone.js', array( 'jquery' ), API_VER, true );
 
 			if ( $this->validation )
 			{
-				wp_enqueue_script( 'jquery-validate', RWMB_JS_URL . 'jquery.validate.min.js', array( 'jquery' ), RWMB_VER, true );
-				wp_enqueue_script( 'rwmb-validate', RWMB_JS_URL . 'validate.js', array( 'jquery-validate' ), RWMB_VER, true );
+				wp_enqueue_script( 'jquery-validate', API_JS_URL . 'jquery.validate.min.js', array( 'jquery' ), API_VER, true );
+				wp_enqueue_script( 'anim8-validate', API_JS_URL . 'validate.js', array( 'jquery-validate' ), API_VER, true );
 			}
 		}
 
@@ -133,8 +133,8 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 				// 1st action applies to all meta boxes
 				// 2nd action applies to only current meta box
 				$show = true;
-				$show = apply_filters( 'rwmb_show', $show, $this->meta_box );
-				$show = apply_filters( "rwmb_show_{$this->meta_box['id']}", $show, $this->meta_box );
+				$show = apply_filters( 'anim8_show', $show, $this->meta_box );
+				$show = apply_filters( "anim8_show_{$this->meta_box['id']}", $show, $this->meta_box );
 				if ( !$show )
 					continue;
 
@@ -160,13 +160,13 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 
 			$saved = self::has_been_saved( $post->ID, $this->fields );
 
-			wp_nonce_field( "rwmb-save-{$this->meta_box['id']}", "nonce_{$this->meta_box['id']}" );
+			wp_nonce_field( "anim8-save-{$this->meta_box['id']}", "nonce_{$this->meta_box['id']}" );
 
 			// Allow users to add custom code before meta box content
 			// 1st action applies to all meta boxes
 			// 2nd action applies to only current meta box
-			do_action( 'rwmb_before' );
-			do_action( "rwmb_before_{$this->meta_box['id']}" );
+			do_action( 'anim8_before' );
+			do_action( "anim8_before_{$this->meta_box['id']}" );
 
 			foreach ( $this->fields as $field )
 			{
@@ -174,8 +174,8 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 				$type = $field['type'];
 				$id   = $field['id'];
 				$meta = self::apply_field_class_filters( $field, 'meta', '', $post->ID, $saved );
-				$meta = apply_filters( "rwmb_{$type}_meta", $meta );
-				$meta = apply_filters( "rwmb_{$id}_meta", $meta );
+				$meta = apply_filters( "anim8_{$type}_meta", $meta );
+				$meta = apply_filters( "anim8_{$id}_meta", $meta );
 
 				$begin = self::apply_field_class_filters( $field, 'begin_html', '', $meta );
 
@@ -183,9 +183,9 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 				// 1st filter applies to all fields
 				// 2nd filter applies to all fields with the same type
 				// 3rd filter applies to current field only
-				$begin = apply_filters( 'rwmb_begin_html', $begin, $field, $meta );
-				$begin = apply_filters( "rwmb_{$type}_begin_html", $begin, $field, $meta );
-				$begin = apply_filters( "rwmb_{$id}_begin_html", $begin, $field, $meta );
+				$begin = apply_filters( 'anim8_begin_html', $begin, $field, $meta );
+				$begin = apply_filters( "anim8_{$type}_begin_html", $begin, $field, $meta );
+				$begin = apply_filters( "anim8_{$id}_begin_html", $begin, $field, $meta );
 
 				// Separate code for cloneable and non-cloneable fields to make easy to maintain
 
@@ -199,26 +199,26 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 
 					$field_html = '';
 
-					foreach ( $meta as $index => $meta_data )
+					foreach ( $meta as $index => $anim8_data )
 					{
 						$sub_field = $field;
 						$sub_field['field_name'] = $field['field_name'] . "[{$index}]";
 						if ( $field['multiple'] )
 							$sub_field['field_name'] .= '[]';
 
-						add_filter( "rwmb_{$id}_html", array( $this, 'add_clone_buttons' ), 10, 3 );
+						add_filter( "anim8_{$id}_html", array( $this, 'add_clone_buttons' ), 10, 3 );
 
-						// Wrap field HTML in a div with class="rwmb-clone" if needed
-						$input_html = '<div class="rwmb-clone">';
+						// Wrap field HTML in a div with class="anim8-clone" if needed
+						$input_html = '<div class="anim8-clone">';
 
 						// Call separated methods for displaying each type of field
-						$input_html .= self::apply_field_class_filters( $sub_field, 'html', '', $meta_data );
+						$input_html .= self::apply_field_class_filters( $sub_field, 'html', '', $anim8_data );
 
 						// Apply filter to field HTML
 						// 1st filter applies to all fields with the same type
 						// 2nd filter applies to current field only
-						$input_html = apply_filters( "rwmb_{$type}_html", $input_html, $field, $meta_data );
-						$input_html = apply_filters( "rwmb_{$id}_html", $input_html, $field, $meta_data );
+						$input_html = apply_filters( "anim8_{$type}_html", $input_html, $field, $anim8_data );
+						$input_html = apply_filters( "anim8_{$id}_html", $input_html, $field, $anim8_data );
 
 						$input_html .= '</div>';
 
@@ -234,8 +234,8 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 					// Apply filter to field HTML
 					// 1st filter applies to all fields with the same type
 					// 2nd filter applies to current field only
-					$field_html = apply_filters( "rwmb_{$type}_html", $field_html, $field, $meta );
-					$field_html = apply_filters( "rwmb_{$id}_html", $field_html, $field, $meta );
+					$field_html = apply_filters( "anim8_{$type}_html", $field_html, $field, $meta );
+					$field_html = apply_filters( "anim8_{$id}_html", $field_html, $field, $meta );
 				}
 
 				$end = self::apply_field_class_filters( $field, 'end_html', '', $meta );
@@ -244,19 +244,19 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 				// 1st filter applies to all fields
 				// 2nd filter applies to all fields with the same type
 				// 3rd filter applies to current field only
-				$end = apply_filters( 'rwmb_end_html', $end, $field, $meta );
-				$end = apply_filters( "rwmb_{$type}_end_html", $end, $field, $meta );
-				$end = apply_filters( "rwmb_{$id}_end_html", $end, $field, $meta );
+				$end = apply_filters( 'anim8_end_html', $end, $field, $meta );
+				$end = apply_filters( "anim8_{$type}_end_html", $end, $field, $meta );
+				$end = apply_filters( "anim8_{$id}_end_html", $end, $field, $meta );
 
 				// Apply filter to field wrapper
 				// This allow users to change whole HTML markup of the field wrapper (i.e. table row)
 				// 1st filter applies to all fields with the same type
 				// 2nd filter applies to current field only
-				$html = apply_filters( "rwmb_{$type}_wrapper_html", "{$begin}{$field_html}{$end}", $field, $meta );
-				$html = apply_filters( "rwmb_{$id}_wrapper_html", $html, $field, $meta );
+				$html = apply_filters( "anim8_{$type}_wrapper_html", "{$begin}{$field_html}{$end}", $field, $meta );
+				$html = apply_filters( "anim8_{$id}_wrapper_html", $html, $field, $meta );
 
 				// Display label and input in DIV and allow user-defined classes to be appended
-				$classes = array( 'rwmb-field', "rwmb-{$field['type']}-wrapper" );
+				$classes = array( 'anim8-field', "anim8-{$field['type']}-wrapper" );
 				if ( 'hidden' === $field['type'] )
 					$classes[] = 'hidden';
 				if ( !empty( $field['required'] ) )
@@ -277,17 +277,17 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 			{
 				echo '
 					<script type="text/javascript">
-						if ( typeof rwmb == "undefined" )
+						if ( typeof anim8 == "undefined" )
 						{
-							var rwmb = {
+							var anim8 = {
 								validationOptions : jQuery.parseJSON( \'' . json_encode( $this->validation ) . '\' ),
-								summaryMessage : "' . __( 'Please correct the errors highlighted below and try again.', 'rwmb' ) . '"
+								summaryMessage : "' . __( 'Please correct the errors highlighted below and try again.', 'anim8' ) . '"
 							};
 						}
 						else
 						{
 							var tempOptions = jQuery.parseJSON( \'' . json_encode( $this->validation ) . '\' );
-							jQuery.extend( true, rwmb.validationOptions, tempOptions );
+							jQuery.extend( true, anim8.validationOptions, tempOptions );
 						};
 					</script>
 				';
@@ -296,8 +296,8 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 			// Allow users to add custom code after meta box content
 			// 1st action applies to all meta boxes
 			// 2nd action applies to only current meta box
-			do_action( 'rwmb_after' );
-			do_action( "rwmb_after_{$this->meta_box['id']}" );
+			do_action( 'anim8_after' );
+			do_action( "anim8_after_{$this->meta_box['id']}" );
 		}
 
 		/**
@@ -312,13 +312,13 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 		static function begin_html( $html, $meta, $field )
 		{
 			if ( empty( $field['name'] ) )
-				return '<div class="rwmb-input">';
+				return '<div class="anim8-input">';
 
 			return sprintf(
-				'<div class="rwmb-label">
+				'<div class="anim8-label">
 					<label for="%s">%s</label>
 				</div>
-				<div class="rwmb-input">',
+				<div class="anim8-input">',
 				$field['id'],
 				$field['name']
 			);
@@ -339,7 +339,7 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 
 			$button = '';
 			if ( $field['clone'] )
-				$button = '<a href="#" class="rwmb-button button-primary add-clone">' . __( '+', 'rwmb' ) . '</a>';
+				$button = '<a href="#" class="anim8-button button-primary add-clone">' . __( '+', 'anim8' ) . '</a>';
 
 			$desc = ! empty( $field['desc'] ) ? "<p id='{$id}_description' class='description'>{$field['desc']}</p>" : '';
 
@@ -351,17 +351,17 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 
 		/**
 		 * Callback function to add clone buttons on demand
-		 * Hooks on the flight into the "rwmb_{$field_id}_html" filter before the closing div
+		 * Hooks on the flight into the "anim8_{$field_id}_html" filter before the closing div
 		 *
 		 * @param string $html
 		 * @param array  $field
-		 * @param mixed  $meta_data
+		 * @param mixed  $anim8_data
 		 *
 		 * @return string $html
 		 */
-		static function add_clone_buttons( $html, $field, $meta_data )
+		static function add_clone_buttons( $html, $field, $anim8_data )
 		{
-			$button = '<a href="#" class="rwmb-button button remove-clone">' . __( '&#8211;', 'rwmb' ) . '</a>';
+			$button = '<a href="#" class="anim8-button button remove-clone">' . __( '&#8211;', 'anim8' ) . '</a>';
 
 			return "{$html}{$button}";
 		}
@@ -422,7 +422,7 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 			}
 
 			// Verify nonce
-			check_admin_referer( "rwmb-save-{$this->meta_box['id']}", "nonce_{$this->meta_box['id']}" );
+			check_admin_referer( "anim8-save-{$this->meta_box['id']}", "nonce_{$this->meta_box['id']}" );
 
 			foreach ( $this->fields as $field )
 			{
@@ -436,8 +436,8 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 				// Use filter to change field value
 				// 1st filter applies to all fields with the same type
 				// 2nd filter applies to current field only
-				$new = apply_filters( "rwmb_{$field['type']}_value", $new, $field, $old );
-				$new = apply_filters( "rwmb_{$name}_value", $new, $field, $old );
+				$new = apply_filters( "anim8_{$field['type']}_value", $new, $field, $old );
+				$new = apply_filters( "anim8_{$name}_value", $new, $field, $old );
 
 				// Call defined method to save meta value, if there's no methods, call common one
 				self::do_field_class_actions( $field, 'save', $new, $old, $post_id );
@@ -490,22 +490,22 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 		/**
 		 * Normalize parameters for meta box
 		 *
-		 * @param array $meta_box Meta box definition
+		 * @param array $anim8_box Meta box definition
 		 *
-		 * @return array $meta_box Normalized meta box
+		 * @return array $anim8_box Normalized meta box
 		 */
-		static function normalize( $meta_box )
+		static function normalize( $anim8_box )
 		{
 			// Set default values for meta box
-			$meta_box = wp_parse_args( $meta_box, array(
-				'id'       => sanitize_title( $meta_box['title'] ),
+			$anim8_box = wp_parse_args( $anim8_box, array(
+				'id'       => sanitize_title( $anim8_box['title'] ),
 				'context'  => 'normal',
 				'priority' => 'high',
 				'pages'    => array( 'post' )
 			) );
 
 			// Set default values for fields
-			foreach ( $meta_box['fields'] as &$field )
+			foreach ( $anim8_box['fields'] as &$field )
 			{
 				$field = wp_parse_args( $field, array(
 					'multiple' => false,
@@ -524,7 +524,7 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 					$field['field_name'] = $field['id'];
 			}
 
-			return $meta_box;
+			return $anim8_box;
 		}
 
 		/**
@@ -537,7 +537,7 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 		static function get_class_name( $field )
 		{
 			$type  = ucwords( $field['type'] );
-			$class = "RWMB_{$type}_Field";
+			$class = "anim8_{$type}_Field";
 
 			if ( class_exists( $class ) )
 				return $class;
@@ -546,7 +546,7 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 		}
 
 		/**
-		 * Apply filters by field class, fallback to RW_Meta_Box method
+		 * Apply filters by field class, fallback to anim8_Meta_Box method
 		 *
 		 * @param array  $field
 		 * @param string $method_name
@@ -560,7 +560,7 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 			$args[] = $field;
 
 			// Call:     field class method
-			// Fallback: RW_Meta_Box method
+			// Fallback: anim8_Meta_Box method
 			$class = self::get_class_name( $field );
 			if ( method_exists( $class, $method_name ) )
 			{
@@ -575,7 +575,7 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 		}
 
 		/**
-		 * Call field class method for actions, fallback to RW_Meta_Box method
+		 * Call field class method for actions, fallback to anim8_Meta_Box method
 		 *
 		 * @param array  $field
 		 * @param string $method_name
@@ -588,7 +588,7 @@ if ( ! class_exists( 'RW_Meta_Box' ) )
 			$args[] = $field;
 
 			// Call:     field class method
-			// Fallback: RW_Meta_Box method
+			// Fallback: anim8_Meta_Box method
 			$class = self::get_class_name( $field );
 			if ( method_exists( $class, $method_name ) )
 			{

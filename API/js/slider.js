@@ -9,7 +9,7 @@ jQuery( document ).ready( function ( $ )
 		, value = null
 		, update = null
 		;
-	$( '.rwmb-slider' ).each( function ( i, val )
+	$( '.anim8-slider' ).each( function ( i, val )
 	{
 		id = $( val ).attr( 'id' );
 		el = $( '#' + id );

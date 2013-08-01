@@ -1,22 +1,22 @@
-div.rwmb-drag-drop {
+div.anim8-drag-drop {
 	border: 4px dashed #ddd;
 	height: 200px;
 }
 
-div.rwmb-image-uploading-bar {
+div.anim8-image-uploading-bar {
 	position: absolute;
 	width: 100%;
 	height: 0%;
 	bottom: 0;
 }
-div.rwmb-image-uploading-status {
+div.anim8-image-uploading-status {
 	position: absolute;
 }
-li.rwmb-image-error {
+li.anim8-image-error {
 	border: 3px solid #c00;
 	background: #903838;
 }
-.rwmb-image-uploading-status .rwmb-loader {
+.anim8-image-uploading-status .anim8-loader {
 	width: 64px;
 	height: 64px;
 	top: 43px;
