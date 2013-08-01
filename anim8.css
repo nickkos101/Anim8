@@ -1,0 +1,32 @@
+.slider {
+	width:999px;
+	height:380px;
+	overflow:hidden;
+	position: relative;
+}
+
+.slider ul {
+	margin:0px;
+	padding:0px;
+	list-style: none;
+}
+
+.slider ul li {
+	margin:0px;
+	padding:0px;
+}
+
+.slide {
+	position: absolute;
+	width:999px;
+	height:380px;
+	background-color:#fff;
+}
+
+.top-left,.top-mid, .top-right, .bot-left,.bot-mid, .bot-right {
+	float:left;
+	height:190px;
+	width:333px;
+	text-align: center;
+	font-size:72px;
+}
