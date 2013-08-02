@@ -5,18 +5,32 @@ global $anim8_boxes;
 $anim8_boxes = array();
 
 $anim8_boxes[] = array(
-    'id' => 'house',
-    'title' => 'Home Info',
+    'id' => 'anim8',
+    'title' => 'Slide Info',
     'pages' => array('anim8slides'),
     'context' => 'normal',
     'priority' => 'high',
     'fields' => array(
-        array(
-            'name' => 'House Model',
-            'id' => 'housemodel',
-            'type' => 'text',
+       array(
+        'name'     => 'Animation Type',
+        'id'       => "animtype",
+        'type'     => 'select',
+            // Array of 'value' => 'Label' pairs for select box
+        'options'  => array(
+            'slidehorz' => 'Slide Horizontally',
+            'slidevert' => 'Slide Vertically',
+            'fade' => 'Fade In / Out',
             ),
-        ),    
+            // Select multiple values, optional. Default is false.
+        'multiple' => false,
+        ),
+       array(
+        'name'             => 'Slide Background',
+        'id'               => "background-image",
+        'type'             => 'plupload_image',
+        'max_file_uploads' => 1,
+        ),
+       ),    
     );
 
 function Anim8_register_meta_boxes() {
