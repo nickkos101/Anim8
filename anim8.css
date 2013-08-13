@@ -18,9 +18,11 @@
 
 .slide {
 	position: absolute;
-	width:999px;
+	width:100%;
 	height:380px;
 	background-color:#fff;
+	background-repeat:no-repeat;
+	background-size:cover;
 }
 
 .top-left,.top-mid, .top-right, .bot-left,.bot-mid, .bot-right {
