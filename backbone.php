@@ -12,19 +12,6 @@ $anim8_boxes[] = array(
     'priority' => 'high',
     'fields' => array(
        array(
-        'name'     => 'Animation Type',
-        'id'       => "animtype",
-        'type'     => 'select',
-            // Array of 'value' => 'Label' pairs for select box
-        'options'  => array(
-            'slidehorz' => 'Slide Horizontally',
-            'slidevert' => 'Slide Vertically',
-            'fade' => 'Fade In / Out',
-            ),
-            // Select multiple values, optional. Default is false.
-        'multiple' => false,
-        ),
-       array(
         'name'             => 'Slide Background',
         'id'               => "background-image",
         'type'             => 'plupload_image',
