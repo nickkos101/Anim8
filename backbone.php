@@ -29,3 +29,5 @@ function Anim8_register_meta_boxes() {
     }
 }
 add_action('admin_init', 'Anim8_register_meta_boxes');
+
+?>
