@@ -16,7 +16,7 @@ function anim8_options_do_page() {    ?>
 		<p class="submit">
 			<input type="submit" class="button-primary" value="<?php _e('Save Options', 'anim8theme'); ?>" />
 		</p>
-		<img src="<?php echo plugins_url('/anim8/Images/nick.jpeg'); ?>">
+		<img style="width:90px;" src="<?php echo plugins_url('/anim8/Images/nick.jpeg'); ?>">
 		<p>Developed By: Nicholas Koskowski, <a href="https://github.com/nickkos101/">check me out on github</a></p>
 	</form>
 </div>
